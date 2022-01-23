@@ -9,7 +9,18 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
+function getEmailDomain(emailadres) {
+    const email = emailadres.indexOf("@");
+    const domain = emailadres.substr(email + 1);
+    return domain;
+}
+const domain1 = getEmailDomain("n.eeken@novi-education.nl");
+const domain2 = getEmailDomain("t.mellink@novi.nl");
+const domain3 = getEmailDomain("a.wiersma@outlook.com");
 
+console.log(domain1);
+console.log(domain2);
+console.log(domain3);
 
 
 /* Opdracht  2 */
@@ -20,7 +31,26 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
+function typeOfMail(emailadres) {
+    const getIndexNumber = emailadres.indexOf("@");
+    const domain = emailadres.substr(getIndexNumber + 1);
 
+    if (domain === "novi-education.nl"){
+        return "Student"
+    } else if (domain === "novi.nl") {
+        return "Medewerker"
+    } else {
+        return "Extern"
+    }
+}
+const mail1 = typeOfMail("n.eeken@novi-education.nl");
+const mail2 = typeOfMail("t.mellink@novi.nl");
+const mail3 = typeOfMail("a.wiersma@outlook.com");
+const mail4 = typeOfMail("novi.nlaapjesk@outlook.com");
+console.log(mail1);
+console.log(mail2);
+console.log(mail3);
+console.log(mail4);
 
 /* Opdracht  3 */
 // Schrijf een functie genaamd checkEmailValidity, die een emailadres verwacht en checkt of het emailadres valide is. De functie returned true of false, afhankelijk van de uitkomst.
@@ -34,3 +64,29 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity(emailadres){
+    const containsMoneyTail = emailadres.includes("@");
+    const containsComma = emailadres.includes(",");
+    const containsPeriod = emailadres.lastIndexOf(".");
+    const checkDot = containsPeriod !== emailadres.length -1;
+
+    if (containsMoneyTail && !containsComma && checkDot){
+        return true
+    }
+    else{
+        return false
+    }
+}
+
+const validity1 = checkEmailValidity("n.eeken@novi.nl");
+const validity2 = checkEmailValidity("tessmellink@novi.nl");
+const validity3 = checkEmailValidity("n.eekenanovi.nl");
+const validity4 = checkEmailValidity("n.eeken@novinl.");
+const validity5 = checkEmailValidity("tessmellink@novi,nl");
+
+console.log(validity1);
+console.log(validity2);
+console.log(validity3);
+console.log(validity4);
+console.log(validity5);
